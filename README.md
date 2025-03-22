@@ -66,7 +66,7 @@ A notes app built using React native for cross-platform mobile devices.
 
  test   ```sh
    npm install
-   ```
+   hello```
 
 2. Start the application
 
