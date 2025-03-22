@@ -64,7 +64,7 @@ A notes app built using React native for cross-platform mobile devices.
 
 1. Install all the dependencies and dev-dependencies
 
-   ```sh
+ test   ```sh
    npm install
    ```
 
