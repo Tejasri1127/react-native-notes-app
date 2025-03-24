@@ -1,4 +1,4 @@
-name: CI/CD Pipeline for React Native Notes App
+name: Deploy React Native Notes App
 
 on:
   push:
@@ -15,26 +15,27 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: 18
 
       - name: Install dependencies
         run: npm install
 
-      - name: Run Tests
+      - name: Run tests
         run: npm test
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
+
     steps:
-      - name: SSH into EC2 & Deploy
+      - name: SSH and deploy
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ubuntu
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            cd /home/ec2-user/app
+            cd react-native-notes-app
             git pull origin main
             npm install
             pm2 restart all
